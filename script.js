@@ -73,3 +73,25 @@ document.addEventListener("DOMContentLoaded", () => {
         showAIRecommendations(todoInput.value);
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const text = "To-Do List";
+    const introText = document.getElementById("intro-text");
+    const cursor = document.getElementById("cursor");
+
+    let i = 0;
+
+    // Initially hide the text and show only the cursor
+    introText.innerHTML = '';
+    
+    function typeWriter() {
+        if (i < text.length) {
+            introText.innerHTML = text.substring(0, i + 1); // Add one character at a time
+            i++;
+            setTimeout(typeWriter, 150); // Adjust typing speed here
+        }
+    }
+
+    typeWriter();
+});
+
