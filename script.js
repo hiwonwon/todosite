@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const darkModeBtn = document.getElementById("dark-mode-btn");
     const body = document.body;
     const todoInput = document.getElementById("todo-input");
+    const rewardInput = document.getElementById("reward-input");
     const addBtn = document.getElementById("add-btn");
     const todoList = document.getElementById("todo-list");
     const aiList = document.getElementById("ai-list");
+    const introText = document.getElementById("intro-text");
 
     // AI 추천 목록 (고정 데이터로 예시)
     const aiRecommendations = [
@@ -19,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function showAIRecommendations(query) {
         aiList.innerHTML = "";  // 기존 추천 항목 삭제
 
-        // 간단한 추천 알고리즘: 사용자가 입력한 내용에 따라 추천 항목 필터링
         aiRecommendations.forEach(item => {
             if (item.toLowerCase().includes(query.toLowerCase())) {
                 const li = document.createElement("li");
@@ -57,11 +58,30 @@ document.addEventListener("DOMContentLoaded", () => {
     // 할 일 추가 버튼 클릭 시
     addBtn.addEventListener("click", () => {
         const todoText = todoInput.value;
+        const rewardText = rewardInput.value;
+
         if (todoText.trim() !== "") {
             const li = document.createElement("li");
-            li.textContent = todoText;
+            const todoItem = document.createElement("span");
+            todoItem.textContent = todoText;
+            const rewardItem = document.createElement("span");
+            rewardItem.textContent = ` | 보상: ${rewardText}`;
+            
+            // 삭제 버튼 추가
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "삭제";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.addEventListener("click", () => {
+                li.remove();  // 할 일 삭제
+            });
+            li.appendChild(todoItem);
+            li.appendChild(rewardItem);
+
             todoList.appendChild(li);
             todoInput.value = "";
+            rewardInput.value = ""; 
+            li.appendChild(deleteBtn);
+            ;
 
             // 할 일 추가 후 추천 항목을 업데이트
             showAIRecommendations(todoText);
@@ -72,13 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
     todoInput.addEventListener("input", () => {
         showAIRecommendations(todoInput.value);
     });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+    // 텍스트 애니메이션
     const text = "To-Do List";
-    const introText = document.getElementById("intro-text");
-    const cursor = document.getElementById("cursor");
-
     let i = 0;
 
     // Initially hide the text and show only the cursor
@@ -94,4 +110,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     typeWriter();
 });
-
