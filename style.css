@@ -1,14 +1,64 @@
+/* 기본 스타일 */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;  /* 다크모드 버튼 위치를 절대 위치로 설정하기 위한 부모 */
 }
 
+/* 다크 모드 버튼 스타일 */
+#dark-mode-btn {
+    position: absolute;
+    top: 20px;  /* 상단 여백 조정 */
+    right: 20px;  /* 오른쪽 여백 */
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #ddd;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1000;  /* 다른 콘텐츠보다 위로 배치 */
+}
+
+/* AI 추천 항목 스타일 */
+#ai-recommendations {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    width: 250px;
+    text-align: left;
+    z-index: 999;
+}
+
+#ai-recommendations h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#ai-recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#ai-recommendations li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* 중앙 박스 스타일 */
 .container {
-    background: white;
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -16,33 +66,71 @@ body {
     text-align: center;
 }
 
+/* 입력 박스 스타일 */
 .input-box {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-input {
-    flex: 1;
-    padding: 5px;
+.input-box input {
+    width: 70%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-button {
-    background: #5c67f2;
+.input-box button {
+    width: 25%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
+.input-box button:hover {
+    background-color: #45a049;
+}
+
+/* 할 일 리스트 스타일 */
 ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
 }
 
-li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    background: #eee;
-    margin-top: 5px;
+ul li {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 다크 모드에서 스타일 변경 */
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode .container {
+    background-color: #444;
+    color: white;
+}
+
+.dark-mode #dark-mode-btn {
+    background-color: #444;
+    color: white;
+}
+
+.dark-mode #ai-recommendations {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode #ai-recommendations li {
+    background-color: #444;
 }
